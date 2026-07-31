@@ -1,0 +1,39 @@
+{
+  "name": "daily-note-star",
+  "version": "1.0.3",
+  "description": "Replaces today's Daily Note tab icon with a solid yellow star.",
+  "private": true,
+  "scripts": {
+    "build": "node esbuild.config.mjs production",
+    "check": "npm run typecheck && npm run lint && npm run build",
+    "dev": "node esbuild.config.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
+  },
+  "keywords": [
+    "obsidian",
+    "obsidian-plugin",
+    "daily-notes"
+  ],
+  "author": "Ben Hancock",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benhancock/daily-note-star.git"
+  },
+  "bugs": {
+    "url": "https://github.com/benhancock/daily-note-star/issues"
+  },
+  "homepage": "https://github.com/benhancock/daily-note-star#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@eslint/json": "^0.14.0",
+    "esbuild": "^0.28.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-obsidianmd": "^0.4.1",
+    "obsidian": "^1.13.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.65.0"
+  }
+}

@@ -1,0 +1,21 @@
+.daily-note-star-tab .workspace-tab-header-inner-icon {
+  color: var(--color-yellow);
+  filter: none;
+  opacity: 1;
+}
+
+.daily-note-star-tab:is(.is-active, :focus-within)
+  .workspace-tab-header-inner-icon {
+  color: var(--color-yellow);
+  opacity: 1;
+}
+
+.daily-note-star-tab:is(:hover, :active) .workspace-tab-header-inner-icon {
+  color: var(--color-yellow);
+  filter: brightness(0.85);
+  opacity: 1;
+}
+
+.daily-note-star-tab .workspace-tab-header-inner-icon svg {
+  fill: currentColor;
+}
