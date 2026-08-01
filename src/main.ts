@@ -10,18 +10,23 @@ import {
 import { getTodaysDailyNotePath, type MomentLike } from "./daily-note";
 
 const STAR_TAB_CLASS = "daily-note-icon-tab";
+const STAR_ICON_SELECTOR = 'svg[data-icon="star"], svg.lucide-star';
+const TAB_HEADER_CONTAINER_SELECTOR = ".workspace-tab-header-container";
 const TAB_ICON_SELECTOR = ".workspace-tab-header-inner-icon";
 
 export default class DailyNoteIcon extends Plugin {
   private dailyNotePath: string | null = null;
   private midnightTimer: number | null = null;
+  private readonly tabObservers = new Map<HTMLElement, MutationObserver>();
 
   onload(): void {
     this.app.workspace.onLayoutReady(() => {
+      this.observeTabContainers(this.app.workspace.containerEl);
       this.refreshDailyNote();
 
       this.registerEvent(
         this.app.workspace.on("layout-change", () => {
+          this.observeTabContainers(this.app.workspace.containerEl);
           this.refreshDailyNote();
         })
       );
@@ -31,8 +36,14 @@ export default class DailyNoteIcon extends Plugin {
         })
       );
       this.registerEvent(
-        this.app.workspace.on("window-open", () => {
-          this.updateTabStars();
+        this.app.workspace.on("window-open", (workspaceWindow) => {
+          this.observeTabContainers(workspaceWindow.doc.body);
+          this.refreshDailyNote();
+        })
+      );
+      this.registerEvent(
+        this.app.workspace.on("window-close", (workspaceWindow) => {
+          this.stopObservingDocument(workspaceWindow.doc);
         })
       );
       this.registerEvent(
@@ -56,6 +67,10 @@ export default class DailyNoteIcon extends Plugin {
 
     this.register(() => {
       this.clearMidnightTimer();
+      for (const observer of this.tabObservers.values()) {
+        observer.disconnect();
+      }
+      this.tabObservers.clear();
       this.restoreTabIcons();
     });
   }
@@ -85,15 +100,50 @@ export default class DailyNoteIcon extends Plugin {
       const isDailyNote =
         leaf.view instanceof MarkdownView &&
         leaf.view.file?.path === this.dailyNotePath;
+      const hasStarIcon = tabIcon.querySelector(STAR_ICON_SELECTOR) !== null;
 
-      if (isDailyNote && !tabHeader.hasClass(STAR_TAB_CLASS)) {
-        setIcon(tabIcon, "star");
+      if (isDailyNote) {
+        if (!hasStarIcon) {
+          setIcon(tabIcon, "star");
+        }
         tabHeader.addClass(STAR_TAB_CLASS);
       } else if (!isDailyNote && tabHeader.hasClass(STAR_TAB_CLASS)) {
         setIcon(tabIcon, leaf.getIcon());
         tabHeader.removeClass(STAR_TAB_CLASS);
       }
     });
+  }
+
+  private observeTabContainers(root: HTMLElement): void {
+    for (const container of root.querySelectorAll<HTMLElement>(
+      TAB_HEADER_CONTAINER_SELECTOR
+    )) {
+      if (this.tabObservers.has(container)) {
+        continue;
+      }
+
+      const ownerWindow = container.ownerDocument.defaultView;
+      if (!ownerWindow) {
+        continue;
+      }
+
+      const observer = new ownerWindow.MutationObserver(() => {
+        this.updateTabStars();
+      });
+      observer.observe(container, { childList: true, subtree: true });
+      this.tabObservers.set(container, observer);
+    }
+  }
+
+  private stopObservingDocument(ownerDocument: Document): void {
+    for (const [container, observer] of this.tabObservers) {
+      if (container.ownerDocument !== ownerDocument) {
+        continue;
+      }
+
+      observer.disconnect();
+      this.tabObservers.delete(container);
+    }
   }
 
   private restoreTabIcons(): void {

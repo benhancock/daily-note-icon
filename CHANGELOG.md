@@ -2,6 +2,11 @@
 
 All notable changes to Daily Note Icon are documented here.
 
+## 1.0.5 - 2026-08-01
+
+- Keep the star applied when Obsidian repaints a Daily Note tab's native icon.
+- Limit DOM observation to tab-header containers.
+
 ## 1.0.4 - 2026-08-01
 
 - Rename the plugin from Daily Note Star to Daily Note Icon.
