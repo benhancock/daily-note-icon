@@ -4,7 +4,7 @@ import process from "node:process";
 const production = process.argv[2] === "production";
 
 const context = await esbuild.context({
-  banner: { js: "/* Daily Note Star */" },
+  banner: { js: "/* Daily Note Icon */" },
   bundle: true,
   entryPoints: ["src/main.ts"],
   external: ["obsidian", "electron", "@codemirror/*", "@lezer/*"],

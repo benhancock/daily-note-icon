@@ -1,6 +1,10 @@
 # Changelog
 
-All notable changes to Daily Note Star are documented here.
+All notable changes to Daily Note Icon are documented here.
+
+## 1.0.4 - 2026-08-01
+
+- Rename the plugin from Daily Note Star to Daily Note Icon.
 
 ## 1.0.3 - 2026-07-31
 

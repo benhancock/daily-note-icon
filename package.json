@@ -1,6 +1,6 @@
 {
-  "name": "daily-note-star",
-  "version": "1.0.3",
+  "name": "daily-note-icon",
+  "version": "1.0.4",
   "description": "Replaces today's Daily Note tab icon with a solid yellow star.",
   "private": true,
   "scripts": {
@@ -20,12 +20,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benhancock/daily-note-star.git"
+    "url": "git+https://github.com/benhancock/daily-note-icon.git"
   },
   "bugs": {
-    "url": "https://github.com/benhancock/daily-note-star/issues"
+    "url": "https://github.com/benhancock/daily-note-icon/issues"
   },
-  "homepage": "https://github.com/benhancock/daily-note-star#readme",
+  "homepage": "https://github.com/benhancock/daily-note-icon#readme",
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@eslint/json": "^0.14.0",

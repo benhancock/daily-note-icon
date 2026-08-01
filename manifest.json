@@ -1,7 +1,7 @@
 {
-  "id": "daily-note-star",
-  "name": "Daily Note Star",
-  "version": "1.0.3",
+  "id": "daily-note-icon",
+  "name": "Daily Note Icon",
+  "version": "1.0.4",
   "minAppVersion": "1.4.0",
   "description": "Replaces today's Daily Note tab icon with a solid yellow star.",
   "author": "Ben Hancock",

@@ -9,10 +9,10 @@ import {
 
 import { getTodaysDailyNotePath, type MomentLike } from "./daily-note";
 
-const STAR_TAB_CLASS = "daily-note-star-tab";
+const STAR_TAB_CLASS = "daily-note-icon-tab";
 const TAB_ICON_SELECTOR = ".workspace-tab-header-inner-icon";
 
-export default class DailyNoteStar extends Plugin {
+export default class DailyNoteIcon extends Plugin {
   private dailyNotePath: string | null = null;
   private midnightTimer: number | null = null;
 

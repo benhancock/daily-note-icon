@@ -1,6 +1,6 @@
-# Daily Note Star
+# Daily Note Icon
 
-Daily Note Star replaces the document icon in today's Daily Note tab with a
+Daily Note Icon replaces the document icon in today's Daily Note tab with a
 solid yellow star. The star stays yellow when the tab is active and becomes
 slightly darker on hover.
 
@@ -15,21 +15,21 @@ core plugin and updates automatically after file changes and at midnight.
 
 ## Installation
 
-Once Daily Note Star is available in the Community Plugins directory:
+Once Daily Note Icon is available in the Community Plugins directory:
 
 1. Open **Settings → Community plugins**.
-2. Select **Browse** and search for **Daily Note Star**.
+2. Select **Browse** and search for **Daily Note Icon**.
 3. Select **Install**, then **Enable**.
 
 ### Manual installation
 
 Copy `main.js`, `manifest.json`, and `styles.css` from the latest release into
-your vault's `.obsidian/plugins/daily-note-star/` directory, then enable the
+your vault's `.obsidian/plugins/daily-note-icon/` directory, then enable the
 plugin under **Settings → Community plugins**.
 
 ## Privacy and permissions
 
-Daily Note Star:
+Daily Note Icon:
 
 - Makes no network requests.
 - Collects no analytics or telemetry.
@@ -56,7 +56,7 @@ For a development build that watches for changes, run `npm run dev`.
 ## Support
 
 Report bugs and request features through
-[GitHub Issues](https://github.com/benhancock/daily-note-star/issues).
+[GitHub Issues](https://github.com/benhancock/daily-note-icon/issues).
 
 ## License
 
